@@ -92,7 +92,7 @@ class NewsAdapter(
     override fun getItemCount(): Int {
         return arrayList.size
     }
-    
+
 
     private fun findADayFromDate(dateFromServer:String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)

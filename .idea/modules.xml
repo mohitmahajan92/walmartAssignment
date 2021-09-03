@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/walmartAssignment.iml" filepath="$PROJECT_DIR$/.idea/walmartAssignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Walmart.iml" filepath="$PROJECT_DIR$/.idea/modules/Walmart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Walmart.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Walmart.app.iml" />
     </modules>
   </component>
 </project>
