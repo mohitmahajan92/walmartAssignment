@@ -15,7 +15,6 @@ import com.example.walmart.WebViewActivity
 import com.example.walmart.model.NewsResponse
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class NewsAdapter(
     private val arrayList: ArrayList<NewsResponse.Article>
@@ -23,6 +22,17 @@ class NewsAdapter(
 ) : RecyclerView.Adapter<NewsAdapter.HotelListViewHolder>() {
 
     var context: Context?=null
+    fun getDayOfMonthSuffix(n: Int): String? {
+//        checkArgument(n >= 1 && n <= 31, "illegal day of month: $n")
+        return if (n >= 11 && n <= 13) {
+            "th"
+        } else when (n % 10) {
+            1 -> "st"
+            2 -> "nd"
+            3 -> "rd"
+            else -> "th"
+        }
+    }
 
     class HotelListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -59,6 +69,10 @@ class NewsAdapter(
         holder.tvDesc.text = arrayList[position].description
         holder.tvSource.text = "${"Source "}${arrayList[position].author}"
 
+//        getConcreteDate()
+
+
+
 
         Glide.with(holder.itemView.context).load(arrayList[position].urlToImage)
             .into(holder.imageView)
@@ -68,11 +82,24 @@ class NewsAdapter(
             intent.putExtra("url", arrayList[position].url)
             context?.startActivity(intent)
 
+
+
         }
     }
 
     override fun getItemCount(): Int {
         return arrayList.size
+    }
+
+
+    fun getConcreteDate(){
+        val day = getDayOfMonthSuffix(5)
+            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+            val outputFormat = SimpleDateFormat("2021-09-03T04:58:00Z")
+            val date = inputFormat.parse("d'day' MMM HH:mm a")
+            val formattedDate = outputFormat.format(date)
+            println(formattedDate)
+
     }
 
     interface ICallBack {
