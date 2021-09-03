@@ -68,8 +68,10 @@ class NewsAdapter(
         holder.tvTitle.text = arrayList[position].title
         holder.tvDesc.text = arrayList[position].description
         holder.tvSource.text = "${"Source "}${arrayList[position].author}"
+        val dateFromServer= dateConvert(arrayList[position].publishedAt)
+        holder.tvTime.text =dateFromServer.toString()
 
-//        getConcreteDate()
+
 
 
 
@@ -92,19 +94,31 @@ class NewsAdapter(
     }
 
 
-    fun getConcreteDate(){
-        val day = getDayOfMonthSuffix(5)
-            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
-            val outputFormat = SimpleDateFormat("2021-09-03T04:58:00Z")
-            val date = inputFormat.parse("d'day' MMM HH:mm a")
-            val formattedDate = outputFormat.format(date)
-            println(formattedDate)
+//    fun getConcreteDate(){
+//        val day = getDayOfMonthSuffix(5)
+//            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
+//            val outputFormat = SimpleDateFormat("2021-09-03T04:58:00Z")
+//            val date = inputFormat.parse("d'day' MMM HH:mm a")
+//            val formattedDate = outputFormat.format(date)
+//            println(formattedDate)
+//
+//    }
 
+    private fun findADayFromDate(dateFromServer:String): String {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
+        val outputFormat = SimpleDateFormat("d", Locale.ENGLISH)
+        val date = inputFormat.parse(dateFromServer)
+        return outputFormat.format(date)
     }
 
-    interface ICallBack {
-
-        fun callDetail(position: Int)
-
+    private fun dateConvert(mdate:String) : String{
+        val day = getDayOfMonthSuffix(findADayFromDate(mdate).toInt())
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
+        val outputFormat = SimpleDateFormat("d'" + day + "' MMMM h:mm a", Locale.ENGLISH)
+        val date = inputFormat.parse("2021-09-03T04:58:00Z")
+        val formattedDate = outputFormat.format(date)
+        return formattedDate
     }
+
+
 }
