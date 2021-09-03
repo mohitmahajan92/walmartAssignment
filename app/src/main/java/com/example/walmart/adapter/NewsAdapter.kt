@@ -92,17 +92,7 @@ class NewsAdapter(
     override fun getItemCount(): Int {
         return arrayList.size
     }
-
-
-//    fun getConcreteDate(){
-//        val day = getDayOfMonthSuffix(5)
-//            val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
-//            val outputFormat = SimpleDateFormat("2021-09-03T04:58:00Z")
-//            val date = inputFormat.parse("d'day' MMM HH:mm a")
-//            val formattedDate = outputFormat.format(date)
-//            println(formattedDate)
-//
-//    }
+    
 
     private fun findADayFromDate(dateFromServer:String): String {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
